@@ -1,0 +1,40 @@
+name: Deploy do index.html no GitHub Pages
+
+on:
+  # Roda a action a cada push na branch principal
+  push:
+    branches: ["main", "master"]
+
+  # Permite rodar a action manualmente pela aba "Actions"
+  workflow_dispatch:
+
+# Concede permissões necessárias para o token do GitHub fazer o deploy
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Garante apenas um deploy simultâneo por vez
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Pasta onde está o index.html ('.' indica a raiz do repositório)
+          path: '.'
+
+      - name: Fazer o Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
