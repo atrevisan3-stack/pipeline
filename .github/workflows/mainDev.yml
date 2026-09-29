@@ -1,6 +1,17 @@
 name: Deploy Manual no Netlify
 
 on:
+  # Executa automaticamente quando houver push na branch dev
+  push:
+    branches:
+      - 'dev'
+  
+  # Executa quando um Pull Request for aberto ou atualizado direcionado à dev
+  pull_request:
+    branches:
+      - 'dev'
+
+  # Permite também executar manualmente pelo botão no GitHub (opcional, mas recomendado)
   workflow_dispatch:
 
 permissions:
