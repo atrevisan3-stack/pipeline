@@ -1,10 +1,7 @@
 name: Deploy para o Netlify
 
 on:
-  push:
-    branches: ["main", "master"]
-  pull_request:
-    branches: ["main", "master"]
+  workflow_dispatch: 
 
 jobs:
   deploy:
