@@ -3,6 +3,9 @@ name: Deploy para o Netlify
 on:
   push:
     branches: ["main", "master"]
+    branches-ignore:
+      - 'main'
+      - 'dev'
   pull_request:
     branches: ["main", "master"]
 
