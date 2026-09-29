@@ -1,0 +1,23 @@
+name: Deploy Manual no Netlify
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Deploy no Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: '.'
+          net-site-id: 223fcaa8-e86b-4843-ad4a-05537595bad1
+          net-auth-token: nfp_zj1y5cYibe9fwdFSnYx79HVUyviQm3Ncebb8
+          production-deploy: true
+          enable-commit-comment: true
